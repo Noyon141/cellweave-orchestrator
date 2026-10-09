@@ -1,0 +1,41 @@
+{
+  "name": "cellweave-orchestrator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Temporal durable orchestrator worker for CellWeave scientific pipelines.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/worker.js",
+    "lint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@cellweave/contracts": "file:../cellweave-contracts",
+    "@temporalio/activity": "^1.11.4",
+    "@temporalio/client": "^1.11.4",
+    "@temporalio/worker": "^1.11.4",
+    "@temporalio/workflow": "^1.11.4",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "^1.11.4",
+    "@types/node": "^22.13.4",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "eslint": "^9.20.1",
+    "prettier": "^3.5.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@10.28.1"
+}
