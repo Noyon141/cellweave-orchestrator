@@ -8,6 +8,11 @@ import type {
 import { ModalComputeProvider } from "../providers/compute/modal-compute-provider.js";
 import { logger } from "../observability/logger.js";
 
+export interface ComputeJobQueryParams {
+  readonly jobId: string;
+  readonly providerJobId: string;
+}
+
 let defaultComputeProvider: ComputeProvider = new ModalComputeProvider();
 
 export function setGlobalComputeProvider(provider: ComputeProvider): void {
@@ -26,11 +31,11 @@ export function createComputeActivities(provider: ComputeProvider = defaultCompu
       return provider.submit(request);
     },
 
-    async pollComputeJobStatus(params: {
-      jobId: string;
-      providerJobId: string;
-    }): Promise<ComputeJobStatusResponse> {
-      logger.debug("Activity: pollComputeJobStatus", params);
+    async pollComputeJobStatus(params: ComputeJobQueryParams): Promise<ComputeJobStatusResponse> {
+      logger.debug("Activity: pollComputeJobStatus", {
+        jobId: params.jobId,
+        providerJobId: params.providerJobId,
+      });
       return provider.status(params.jobId, params.providerJobId);
     },
 
@@ -43,11 +48,11 @@ export function createComputeActivities(provider: ComputeProvider = defaultCompu
       return provider.cancel(request);
     },
 
-    async fetchComputeJobResult(params: {
-      jobId: string;
-      providerJobId: string;
-    }): Promise<ComputeJobResultResponse> {
-      logger.info("Activity: fetchComputeJobResult", params);
+    async fetchComputeJobResult(params: ComputeJobQueryParams): Promise<ComputeJobResultResponse> {
+      logger.info("Activity: fetchComputeJobResult", {
+        jobId: params.jobId,
+        providerJobId: params.providerJobId,
+      });
       return provider.result(params.jobId, params.providerJobId);
     },
   };

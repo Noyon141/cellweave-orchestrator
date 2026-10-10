@@ -1,3 +1,5 @@
+import type { RunState } from "@cellweave/contracts";
+
 export interface CancellationRequest {
   readonly runId: string;
   readonly reason: string;
@@ -10,7 +12,7 @@ export interface CancellationResult {
   readonly cancelledAt: string;
   readonly activeProviderJobCancelled: boolean;
   readonly usageFinalized: boolean;
-  readonly runState: "CANCELLED";
+  readonly runState: Extract<RunState, "CANCELLED">;
   readonly reason: string;
 }
 
