@@ -5,6 +5,7 @@ export const EnvSchema = z.object({
   TEMPORAL_ADDRESS: z.string().min(1).default("localhost:7233"),
   TEMPORAL_NAMESPACE: z.string().min(1).default("default"),
   TEMPORAL_TASK_QUEUE: z.string().min(1).default("cellweave-orchestrator-queue"),
+  TEMPORAL_API_KEY: z.string().optional().default(""),
   TEMPORAL_CLIENT_CERT_PATH: z.string().optional().default(""),
   TEMPORAL_CLIENT_KEY_PATH: z.string().optional().default(""),
   MODAL_API_URL: z.string().url().optional().or(z.literal("")),

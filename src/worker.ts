@@ -27,7 +27,7 @@ export async function createWorker(options: WorkerOptions = {}): Promise<Worker>
     nodeEnv: config.NODE_ENV,
   });
 
-  let tlsOptions: { clientCertPair: { crt: Buffer; key: Buffer } } | undefined;
+  let tlsOptions: { clientCertPair: { crt: Buffer; key: Buffer } } | boolean | undefined;
 
   if (config.TEMPORAL_CLIENT_CERT_PATH && config.TEMPORAL_CLIENT_KEY_PATH) {
     logger.info("Configuring mTLS for Temporal connection");
@@ -38,10 +38,13 @@ export async function createWorker(options: WorkerOptions = {}): Promise<Worker>
     tlsOptions = {
       clientCertPair: { crt, key },
     };
+  } else if (config.TEMPORAL_API_KEY) {
+    tlsOptions = true;
   }
 
   const connection = await NativeConnection.connect({
     address,
+    apiKey: config.TEMPORAL_API_KEY || undefined,
     tls: tlsOptions,
   });
 
