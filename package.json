@@ -17,7 +17,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@cellweave/contracts": "file:../cellweave-contracts",
+    "@cellweave/contracts": "file:./vendor/cellweave-contracts-0.1.0.tgz",
     "@temporalio/activity": "^1.11.4",
     "@temporalio/client": "^1.11.4",
     "@temporalio/worker": "^1.11.4",

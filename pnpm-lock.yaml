@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@cellweave/contracts':
-        specifier: file:../cellweave-contracts
-        version: file:../cellweave-contracts
+        specifier: file:./vendor/cellweave-contracts-0.1.0.tgz
+        version: file:vendor/cellweave-contracts-0.1.0.tgz
       '@temporalio/activity':
         specifier: ^1.11.4
         version: 1.24.0
@@ -54,8 +54,9 @@ importers:
 
 packages:
 
-  '@cellweave/contracts@file:../cellweave-contracts':
-    resolution: {directory: ../cellweave-contracts, type: directory}
+  '@cellweave/contracts@file:vendor/cellweave-contracts-0.1.0.tgz':
+    resolution: {integrity: sha512-CqD0VwvWjCiMmu4otUc64cSfmzREvG9QXc1m4aProBtW0rWboDHXKIAgXhsNf32OJFlJEDwgmnPjL1UqrK99UQ==, tarball: file:vendor/cellweave-contracts-0.1.0.tgz}
+    version: 0.1.0
     engines: {node: '>=20.0.0'}
 
   '@esbuild/aix-ppc64@0.28.2':
@@ -1713,7 +1714,7 @@ packages:
 
 snapshots:
 
-  '@cellweave/contracts@file:../cellweave-contracts': {}
+  '@cellweave/contracts@file:vendor/cellweave-contracts-0.1.0.tgz': {}
 
   '@esbuild/aix-ppc64@0.28.2':
     optional: true
